@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /cp/
+
+# Biarkan file/folder asli jalan normal
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Hilangkan .php di URL
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]

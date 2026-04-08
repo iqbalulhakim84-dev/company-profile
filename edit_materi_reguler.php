@@ -1,0 +1,52 @@
+<?php
+include 'koneksi.php';
+$id_daftar_materi_reguler = $_GET['id_daftar_materi_reguler'];
+$result = mysqli_query($koneksi, "SELECT * FROM daftar_materi_reguler WHERE id_daftar_materi_reguler='$id_daftar_materi_reguler'");
+$data = mysqli_fetch_assoc($result);
+
+?>
+<div class="pagetitle">
+    <h1>Kelola Materi Reguler</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="dashboard.php?url=kelola_materi_reguler.php">Kelola Materi Reguler</a></li>
+            <li class="breadcrumb-item active">Edit Materi Reguler</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Edit Materi Reguler</h5>
+
+        <!-- Horizontal Form -->
+<form method="post" action="simpan_materi_reguler.php">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nama Materi</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="nama_materi" value="<?= $data['nama_materi']; ?>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Durasi</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="durasi" value="<?= $data['durasi']; ?>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Harga</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="harga" value="<?= $data['harga']; ?>">
+        </div>
+    </div>
+    <div class="text-center">
+        <input type="hidden" name="id_daftar_materi_reguler" value="<?= $data['id_daftar_materi_reguler']; ?>">
+        <button type="submit" class="btn btn-primary">Edit</button>
+        <button type="reset" class="btn btn-secondary">Kosongkan</button>
+    </div>
+</form>
+
+
+    </div>
+</div>
